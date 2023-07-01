@@ -43,7 +43,7 @@ function generateStoryMarkup(story, showDeleteBtn = false) {
 
 /** Gets list of stories from server, generates their HTML, and puts on page. */
 function getStars(story, user){
-  const isFavorite = false //user.isFavorite(story); //find fix or creat method
+  const isFavorite = user.isFavorite(story);
   const starType = isFavorite ? "fas" : "far";
   return`
   <span class ="star">
@@ -76,6 +76,13 @@ async function deleteStory(evt){
 }
 
 $ownStories.on("click", ".trash-can", deleteStory);
+
+function getDeleteBtnHTML(){
+  return `
+  <span class = "trash-can">
+  <i class = fas fa-trash-alt"></i>
+  </span>`;
+}
 
 async function submitNewStory(evt) {
   console.debug("submitNewStory");
